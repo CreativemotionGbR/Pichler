@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DSGVO Change Manager - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-variant": "#d8e3fb",
+                "tertiary": "#525657",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed-variant": "#444749",
+                "surface-bright": "#f9f9ff",
+                "inverse-on-surface": "#ecf1ff",
+                "surface": "#f9f9ff",
+                "on-tertiary-fixed": "#191c1e",
+                "on-secondary-container": "#54647a",
+                "secondary-fixed": "#d3e4fe",
+                "secondary-fixed-dim": "#b7c8e1",
+                "surface-container-low": "#f0f3ff",
+                "on-primary-container": "#eeefff",
+                "surface-container-high": "#dee8ff",
+                "on-tertiary-container": "#eff1f3",
+                "background": "#f9f9ff",
+                "tertiary-fixed": "#e0e3e5",
+                "secondary-container": "#d0e1fb",
+                "inverse-surface": "#263143",
+                "on-primary": "#ffffff",
+                "error-container": "#ffdad6",
+                "on-primary-fixed": "#00174b",
+                "on-error": "#ffffff",
+                "on-secondary": "#ffffff",
+                "surface-container": "#e7eeff",
+                "tertiary-container": "#6b6e70",
+                "on-surface": "#111c2d",
+                "surface-dim": "#cfdaf2",
+                "primary": "#004ac6",
+                "on-tertiary": "#ffffff",
+                "on-primary-fixed-variant": "#003ea8",
+                "on-background": "#111c2d",
+                "secondary": "#505f76",
+                "outline": "#737686",
+                "inverse-primary": "#b4c5ff",
+                "on-error-container": "#93000a",
+                "tertiary-fixed-dim": "#c4c7c9",
+                "surface-tint": "#0053db",
+                "surface-container-highest": "#d8e3fb",
+                "primary-fixed-dim": "#b4c5ff",
+                "on-surface-variant": "#434655",
+                "primary-fixed": "#dbe1ff",
+                "surface-container-lowest": "#ffffff",
+                "primary-container": "#2563eb",
+                "on-secondary-fixed-variant": "#38485d",
+                "outline-variant": "#c3c6d7",
+                "on-secondary-fixed": "#0b1c30"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "base": "8px",
+                "lg": "24px",
+                "md": "16px",
+                "container-max": "1280px",
+                "xs": "4px",
+                "xl": "32px",
+                "sm": "12px",
+                "gutter": "24px"
+        },
+        "fontFamily": {
+                "body-lg": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ],
+                "h3": [
+                        "Inter"
+                ],
+                "label-bold": [
+                        "Inter"
+                ],
+                "h2": [
+                        "Inter"
+                ],
+                "h1": [
+                        "Inter"
+                ],
+                "h1-mobile": [
+                        "Inter"
+                ],
+                "body-sm": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0",
+                                "fontWeight": "500"
+                        }
+                ],
+                "h3": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "letterSpacing": "0",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-bold": [
+                        "13px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "h2": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "h1": [
+                        "36px",
+                        {
+                                "lineHeight": "44px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "h1-mobile": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+  body {
+    background-color: #F8FAFC; /* Level 0 (Floor) */
+    color: #111c2d;
+  }
+  .card-shadow {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .card-hover:hover {
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  }
+</style>
+</head>
+<body class="flex h-screen overflow-hidden font-body-sm text-body-sm">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen p-md gap-base bg-surface-container-low border-r border-outline-variant docked left-0 h-screen w-64 z-40">
+<div class="mb-lg">
+<h1 class="text-h3 font-h3 font-semibold text-on-surface">DPO Workspace</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Lokale Dokumentenverwaltung</p>
+</div>
+<div class="flex flex-col gap-xs flex-1">
+<a class="flex items-center gap-sm px-sm py-xs bg-secondary-container text-on-secondary-container font-label-bold rounded-lg opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+            Dashboard
+        </a>
+<a class="flex items-center gap-sm px-sm py-xs text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+            Dokumentenbibliothek
+        </a>
+<a class="flex items-center gap-sm px-sm py-xs text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">edit_document</span>
+            Interne Änderung erfassen
+        </a>
+<a class="flex items-center gap-sm px-sm py-xs text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+            Externe Änderung analysieren
+        </a>
+<a class="flex items-center gap-sm px-sm py-xs text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">lightbulb</span>
+            Änderungsvorschläge
+        </a>
+<a class="flex items-center gap-sm px-sm py-xs text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+            Versionen
+        </a>
+<a class="flex items-center gap-sm px-sm py-xs text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">timeline</span>
+            Änderungshistorie
+        </a>
+</div>
+<div class="mt-auto pt-md border-t border-outline-variant">
+<a class="flex items-center gap-sm px-sm py-xs text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+            Einstellungen
+        </a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-lg py-md w-full bg-surface border-b border-outline-variant shadow-sm docked full-width">
+<div class="flex items-center gap-md">
+<h2 class="text-h2 font-h2 font-bold text-primary">DSGVO Change Manager</h2>
+<span class="hidden md:inline-block px-sm py-xs bg-surface-container-high text-on-surface-variant rounded-full text-label-sm font-label-sm border border-outline-variant">
+                Lokal · Keine Cloud · Keine externen APIs
+            </span>
+</div>
+<div class="flex items-center gap-sm">
+<button class="px-md py-xs bg-primary-container text-on-primary rounded-DEFAULT text-label-bold font-label-bold hover:bg-surface-container-high transition-colors hover:text-on-surface hover:scale-[0.98] transition-transform shadow-sm">
+                Beispieldokumente laden
+            </button>
+<button class="px-md py-xs border border-primary text-primary rounded-DEFAULT text-label-bold font-label-bold hover:bg-surface-container-high transition-colors hover:scale-[0.98] transition-transform">
+                Export
+            </button>
+<button class="px-sm py-xs text-error hover:bg-error-container rounded-DEFAULT transition-colors hover:scale-[0.98] transition-transform flex items-center" title="Lokale Daten löschen">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Main Canvas -->
+<main class="flex-1 overflow-y-auto p-lg lg:p-xl">
+<div class="max-w-[1280px] mx-auto space-y-xl">
+<!-- Summary Cards -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
+<div class="bg-on-primary rounded-xl border border-outline-variant p-md card-shadow card-hover transition-shadow flex flex-col">
+<span class="text-on-surface-variant text-label-sm font-label-sm mb-xs">Dokumente</span>
+<div class="flex items-center justify-between">
+<span class="text-h1 font-h1 text-on-surface">12</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+</div>
+<div class="bg-on-primary rounded-xl border border-outline-variant p-md card-shadow card-hover transition-shadow flex flex-col">
+<span class="text-on-surface-variant text-label-sm font-label-sm mb-xs">Offene Änderungsvorschläge</span>
+<div class="flex items-center justify-between">
+<span class="text-h1 font-h1 text-on-surface">3</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+</div>
+</div>
+<div class="bg-on-primary rounded-xl border border-error-container p-md card-shadow card-hover transition-shadow flex flex-col relative overflow-hidden">
+<div class="absolute right-0 top-0 w-16 h-16 bg-error-container rounded-bl-full opacity-50"></div>
+<span class="text-on-surface-variant text-label-sm font-label-sm mb-xs">High Impact Änderungen</span>
+<div class="flex items-center justify-between relative z-10">
+<span class="text-h1 font-h1 text-error">2</span>
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+</div>
+<div class="bg-on-primary rounded-xl border border-outline-variant p-md card-shadow card-hover transition-shadow flex flex-col">
+<span class="text-on-surface-variant text-label-sm font-label-sm mb-xs">Letzte Aktualisierung</span>
+<div class="flex items-center justify-between">
+<span class="text-h2 font-h2 text-on-surface">Heute</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">update</span>
+</div>
+<div class="mt-sm pt-sm border-t border-surface-container flex gap-xs">
+<span class="px-xs py-[2px] bg-emerald-50 text-emerald-700 text-[10px] font-label-bold rounded-full">Low: 5</span>
+<span class="px-xs py-[2px] bg-amber-50 text-amber-700 text-[10px] font-label-bold rounded-full">Med: 3</span>
+<span class="px-xs py-[2px] bg-red-50 text-red-700 text-[10px] font-label-bold rounded-full">High: 2</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>
