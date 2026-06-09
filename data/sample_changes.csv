@@ -1,6 +1,6 @@
-change_id,date,change_type,description,security_change,affected_systems,personal_data,customers_affected,external_parties,source,source_url,number_of_customers,old_text,new_text,notes,email_sender,email_subject,email_received_at
-CHG-001,2026-06-09,Neuer Dienstleister,Ein neuer lokaler IT-Dienstleister verarbeitet Kundendaten für das Ticketsystem.,Nein,Ticketsystem,Ja,Ja,Ja,Beispieldaten,,12,,,Anonymisierte Beispieldaten,,,
-CHG-002,2026-06-09,Software-Update ohne Datenbezug,Update einer internen Bibliothek ohne Verarbeitung personenbezogener Daten.,Nein,Build-System,Nein,Nein,Nein,Beispieldaten,,0,,,Low-Beispiel,,,
-CHG-003,2026-06-09,API-Änderung,CRM API überträgt personenbezogene Kundendaten an ein externes System.,Ja,CRM API,Ja,Ja,Ja,Beispieldaten,,5,,,API-Beispiel,,,
-CHG-004,2026-06-09,Sonstiges / Unklar,Unklare technische Änderung aus einem Projektmeeting.,Unklar,Unklar,Unklar,Unklar,Unklar,Beispieldaten,,0,,,Medium-Beispiel,,,
-CHG-005,2026-06-09,Rechte-/Rollenkonzept geändert,MFA Login und Rollenberechtigungen werden angepasst.,Ja,Identity Management,Ja,Ja,Nein,Beispieldaten,,8,,,TOM-Beispiel,,,
+change_id,date,change_type,description,security_change,affected_systems,personal_data,customers_affected,external_parties,source,source_url,number_of_customers,old_text,new_text,notes,email_message_id,email_sender,email_subject,email_received_at,email_folder
+CHG-001,2026-06-09,Neuer Dienstleister,Ein neuer lokaler IT-Dienstleister verarbeitet Kundendaten für das Ticketsystem.,Nein,Ticketsystem,Ja,Ja,Ja,Beispieldaten,,12,,,Anonymisierte Beispieldaten,,,,
+CHG-002,2026-06-09,Software-Update ohne Datenbezug,Update einer internen Bibliothek ohne Verarbeitung personenbezogener Daten.,Nein,Build-System,Nein,Nein,Nein,Beispieldaten,,0,,,Low-Beispiel,,,,
+CHG-003,2026-06-09,API-Änderung,CRM API überträgt personenbezogene Kundendaten an ein externes System.,Ja,CRM API,Ja,Ja,Ja,Beispieldaten,,5,,,API-Beispiel,,,,
+CHG-004,2026-06-09,Sonstiges / Unklar,Unklare technische Änderung aus einem Projektmeeting.,Unklar,Unklar,Unklar,Unklar,Unklar,Beispieldaten,,0,,,Medium-Beispiel,,,,
+CHG-005,2026-06-09,Rechte-/Rollenkonzept geändert,MFA Login und Rollenberechtigungen werden angepasst.,Ja,Identity Management,Ja,Ja,Nein,Beispieldaten,,8,,,TOM-Beispiel,,,,

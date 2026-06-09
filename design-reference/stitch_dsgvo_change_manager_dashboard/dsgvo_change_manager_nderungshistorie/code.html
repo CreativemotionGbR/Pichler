@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Änderungshistorie - DSGVO Change Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#dbe1ff",
+                      "on-tertiary-fixed": "#191c1e",
+                      "on-secondary-container": "#54647a",
+                      "on-error-container": "#93000a",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "on-primary-container": "#eeefff",
+                      "error": "#ba1a1a",
+                      "tertiary": "#525657",
+                      "surface-container": "#e7eeff",
+                      "on-tertiary-fixed-variant": "#444749",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#c4c7c9",
+                      "surface-tint": "#0053db",
+                      "surface-container-high": "#dee8ff",
+                      "secondary": "#505f76",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#d3e4fe",
+                      "primary": "#004ac6",
+                      "on-surface": "#111c2d",
+                      "tertiary-container": "#6b6e70",
+                      "on-primary-fixed": "#00174b",
+                      "on-background": "#111c2d",
+                      "on-secondary-fixed": "#0b1c30",
+                      "surface-variant": "#d8e3fb",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "outline-variant": "#c3c6d7",
+                      "surface": "#f9f9ff",
+                      "inverse-primary": "#b4c5ff",
+                      "surface-container-low": "#f0f3ff",
+                      "on-tertiary-container": "#eff1f3",
+                      "outline": "#737686",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "inverse-surface": "#263143",
+                      "tertiary-fixed": "#e0e3e5",
+                      "surface-dim": "#cfdaf2",
+                      "primary-container": "#2563eb",
+                      "on-surface-variant": "#434655",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#f9f9ff",
+                      "surface-container-highest": "#d8e3fb",
+                      "secondary-container": "#d0e1fb",
+                      "background": "#f9f9ff",
+                      "inverse-on-surface": "#ecf1ff",
+                      "on-primary-fixed-variant": "#003ea8"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "sm": "12px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "base": "8px",
+                      "xl": "32px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "h3": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "h1-mobile": ["Inter"],
+                      "h2": ["Inter"],
+                      "h1": ["Inter"],
+                      "label-bold": ["Inter"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "h3": ["18px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0", "fontWeight": "500"}],
+                      "h1-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "h1": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-bold": ["13px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-on-surface min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen p-md gap-base border-r border-outline-variant bg-surface-container-low dark:bg-surface-dim docked left-0 w-64 sticky top-0">
+<div class="px-md py-lg">
+<h3 class="text-h3 font-h3 font-semibold text-on-surface">DPO Workspace</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">Lokale Dokumentenverwaltung</p>
+</div>
+<div class="flex-1 flex flex-col gap-xs mt-lg">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-label-bold font-label-bold">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-label-bold font-label-bold">Dokumentenbibliothek</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">edit_document</span>
+<span class="text-label-bold font-label-bold">Interne Änderung erfassen</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-label-bold font-label-bold">Externe Änderung analysieren</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">lightbulb</span>
+<span class="text-label-bold font-label-bold">Änderungsvorschläge</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-label-bold font-label-bold">Versionen</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm bg-secondary-container text-on-secondary-container font-label-bold rounded-lg opacity-80 hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">timeline</span>
+<span class="text-label-bold font-label-bold">Änderungshistorie</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200 mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-bold font-label-bold">Einstellungen</span>
+</a>
+</div>
+</nav>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-lg py-md w-full bg-surface shadow-sm border-b border-outline-variant dark:border-on-surface-variant">
+<div class="flex items-center gap-lg">
+<h2 class="text-h2 font-h2 font-bold text-primary dark:text-primary-fixed">DSGVO Change Manager</h2>
+<nav class="hidden lg:flex gap-lg">
+<span class="text-on-secondary-container font-label-sm">Lokal · Keine Cloud · Keine externen APIs</span>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-primary font-label-bold hover:bg-surface-container-high transition-colors px-md py-sm rounded-lg flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">export_notes</span>
+                    Export
+                </button>
+<button class="bg-primary text-on-primary font-label-bold hover:bg-primary-container transition-colors px-md py-sm rounded-lg shadow-sm flex items-center gap-xs">
+                    Beispieldokumente laden
+                </button>
+<button class="p-sm text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 p-md md:p-xl max-w-container-max mx-auto w-full">
+<div class="mb-xl flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="text-h1-mobile md:text-h1 font-h1-mobile md:font-h1 text-on-surface mb-xs">Änderungshistorie</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Vollständiges Audit-Log aller Dokumentenänderungen und DSGVO-Anpassungen.</p>
+</div>
+<div class="flex gap-sm">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-[36px] pr-sm py-sm border border-outline-variant rounded-lg bg-white focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-sm font-body-sm w-full md:w-64 transition-shadow" placeholder="Historie durchsuchen..." type="text"/>
+</div>
+<button class="px-md py-sm border border-outline-variant bg-white text-on-surface font-label-bold rounded-lg hover:bg-surface-container-lowest transition-colors shadow-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filter
+                    </button>
+</div>
+</div>
+<!-- Table Card -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-[0_1px_3px_rgba(0,0,0,0.1)] overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F1F5F9] border-b border-outline-variant">
+<th class="p-md text-label-bold font-label-bold text-on-primary-fixed whitespace-nowrap">Datum</th>
+<th class="p-md text-label-bold font-label-bold text-on-primary-fixed whitespace-nowrap">Quelle</th>
+<th class="p-md text-label-bold font-label-bold text-on-primary-fixed min-w-[200px]">Dokument</th>
+<th class="p-md text-label-bold font-label-bold text-on-primary-fixed whitespace-nowrap">Impact</th>
+<th class="p-md text-label-bold font-label-bold text-on-primary-fixed min-w-[250px]">Maßnahmen</th>
+<th class="p-md text-label-bold font-label-bold text-on-primary-fixed whitespace-nowrap">Status</th>
+<th class="p-md text-label-bold font-label-bold text-on-primary-fixed whitespace-nowrap text-right">Aktion</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#F1F5F9]">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md text-body-sm font-body-sm text-on-surface whitespace-nowrap">12. Okt 2023<br/><span class="text-label-sm text-on-surface-variant">14:30</span></td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface text-label-sm font-label-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]">public</span> Extern
+                                    </span>
+</td>
+<td class="p-md">
+<div class="text-body-sm font-label-bold text-on-surface">Datenschutzerklärung (Website)</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">EU-US Data Privacy Framework Anpassung</div>
+</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#fef2f2] text-[#991b1b] text-label-sm font-label-bold">
+                                        Hoch
+                                    </span>
+</td>
+<td class="p-md text-body-sm font-body-sm text-on-surface-variant">
+                                    Abschnitt "Drittlandübermittlung" aktualisiert. Verweise auf SCCs ergänzt.
+                                </td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-[#ecfdf5] text-[#065f46] text-label-sm font-label-bold border border-[#a7f3d0]">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Umgesetzt
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="text-primary hover:text-primary-container font-label-bold text-sm px-2 py-1 rounded hover:bg-surface-container-high transition-colors">Details</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md text-body-sm font-body-sm text-on-surface whitespace-nowrap">10. Okt 2023<br/><span class="text-label-sm text-on-surface-variant">09:15</span></td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-variant text-on-surface text-label-sm font-label-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]">business</span> Intern
+                                    </span>
+</td>
+<td class="p-md">
+<div class="text-body-sm font-label-bold text-on-surface">TOMs Katalog v2.4</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Neues CRM-System eingeführt</div>
+</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#fffbeb] text-[#92400e] text-label-sm font-label-bold">
+                                        Mittel
+                                    </span>
+</td>
+<td class="p-md text-body-sm font-body-sm text-on-surface-variant">
+                                    Zugriffskontrollen für Salesforce hinzugefügt. Löschkonzept überarbeitet.
+                                </td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-[#eff6ff] text-[#1e40af] text-label-sm font-label-bold border border-[#bfdbfe]">
+<span class="material-symbols-outlined text-[14px]">pending</span> Offen
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="text-primary hover:text-primary-container font-label-bold text-sm px-2 py-1 rounded hover:bg-surface-container-high transition-colors">Details</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md text-body-sm font-body-sm text-on-surface whitespace-nowrap">05. Okt 2023<br/><span class="text-label-sm text-on-surface-variant">16:45</span></td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface text-label-sm font-label-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]">public</span> Extern
+                                    </span>
+</td>
+<td class="p-md">
+<div class="text-body-sm font-label-bold text-on-surface">Cookie Policy</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">EuGH Urteil C-123/45 (fiktiv)</div>
+</td>
+<td class="p-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#f0fdf4] text-[#166534] text-label-sm font-label-bold">
+                                        Niedrig
+                                    </span>
+</td>
+<td class="p-md text-body-sm font-body-sm text-on-surface-variant">
+                                    Keine Anpassung nötig. Vorhandener Consent-Banner deckt Anforderungen ab.
+                                </td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-[#f1f5f9] text-[#475569] text-label-sm font-label-bold border border-[#cbd5e1]">
+<span class="material-symbols-outlined text-[14px]">block</span> Abgelehnt
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="text-primary hover:text-primary-container font-label-bold text-sm px-2 py-1 rounded hover:bg-surface-container-high transition-colors">Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-md bg-[#F8FAFC] border-t border-outline-variant flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Zeige 1-3 von 128 Einträgen</span>
+<div class="flex gap-xs">
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary text-on-primary font-label-sm flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface font-label-sm flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high text-on-surface font-label-sm flex items-center justify-center">3</button>
+<span class="w-8 h-8 flex items-center justify-center text-on-surface-variant">...</span>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
