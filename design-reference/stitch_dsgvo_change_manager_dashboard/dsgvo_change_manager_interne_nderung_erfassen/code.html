@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="antialiased text-on-surface bg-surface h-full" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interne Änderung erfassen - DSGVO Change Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#dbe1ff",
+                    "on-tertiary-fixed": "#191c1e",
+                    "on-secondary-container": "#54647a",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-primary-container": "#eeefff",
+                    "error": "#ba1a1a",
+                    "tertiary": "#525657",
+                    "surface-container": "#e7eeff",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "surface-tint": "#0053db",
+                    "surface-container-high": "#dee8ff",
+                    "secondary": "#505f76",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#d3e4fe",
+                    "primary": "#004ac6",
+                    "on-surface": "#111c2d",
+                    "tertiary-container": "#6b6e70",
+                    "on-primary-fixed": "#00174b",
+                    "on-background": "#111c2d",
+                    "on-secondary-fixed": "#0b1c30",
+                    "surface-variant": "#d8e3fb",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#c3c6d7",
+                    "surface": "#f9f9ff",
+                    "inverse-primary": "#b4c5ff",
+                    "surface-container-low": "#f0f3ff",
+                    "on-tertiary-container": "#eff1f3",
+                    "outline": "#737686",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "inverse-surface": "#263143",
+                    "tertiary-fixed": "#e0e3e5",
+                    "surface-dim": "#cfdaf2",
+                    "primary-container": "#2563eb",
+                    "on-surface-variant": "#434655",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f9f9ff",
+                    "surface-container-highest": "#d8e3fb",
+                    "secondary-container": "#d0e1fb",
+                    "background": "#f9f9ff",
+                    "inverse-on-surface": "#ecf1ff",
+                    "on-primary-fixed-variant": "#003ea8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "sm": "12px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "base": "8px",
+                    "xl": "32px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "h3": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "h2": ["Inter"],
+                    "h1": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "h3": ["18px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0", "fontWeight": "500"}],
+                    "h1-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h1": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-bold": ["13px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="flex h-screen bg-surface font-body-lg text-on-surface overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen p-md gap-base bg-surface-container-low border-r border-outline-variant w-64 flex-shrink-0 z-40">
+<div class="mb-lg px-sm">
+<h1 class="text-h3 font-h3 font-semibold text-on-surface">DPO Workspace</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Lokale Dokumentenverwaltung</p>
+</div>
+<div class="flex flex-col gap-xs flex-1 overflow-y-auto">
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="text-label-bold font-label-bold">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">description</span>
+<span class="text-label-bold font-label-bold">Dokumentenbibliothek</span>
+</a>
+<a class="flex items-center gap-sm p-sm bg-secondary-container text-on-secondary-container font-label-bold rounded-lg transition-all duration-200 opacity-80" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">edit_document</span>
+<span class="text-label-bold font-label-bold">Interne Änderung erfassen</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
+<span class="text-label-bold font-label-bold">Externe Änderung analysieren</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">lightbulb</span>
+<span class="text-label-bold font-label-bold">Änderungsvorschläge</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+<span class="text-label-bold font-label-bold">Versionen</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">timeline</span>
+<span class="text-label-bold font-label-bold">Änderungshistorie</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200 mt-auto" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="text-label-bold font-label-bold">Einstellungen</span>
+</a>
+</div>
+<div class="mt-md pt-md border-t border-outline-variant flex items-center gap-sm px-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-bold text-label-bold shrink-0">
+                U
+            </div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-label-bold font-label-bold truncate">User Profile</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant truncate">DPO Admin</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden bg-background">
+<!-- TopNavBar (Mobile Only for navigation, Desktop uses for actions) -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-lg py-md w-full bg-surface border-b border-outline-variant shadow-sm shrink-0">
+<div class="flex items-center gap-md">
+<button class="md:hidden text-on-surface hover:bg-surface-container-high p-sm rounded-lg transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="text-h2 font-h2 font-bold text-primary">DSGVO Change Manager</div>
+</div>
+<div class="hidden md:flex flex-col items-start mr-auto ml-xl">
+<div class="flex gap-lg">
+<a class="text-primary font-label-bold border-b-2 border-primary pb-xs hover:bg-surface-container-high transition-colors" href="#">Lokal · Keine Cloud · Keine externen APIs</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="hidden lg:flex items-center justify-center h-10 px-md rounded-lg border border-primary text-primary hover:bg-surface-container-high transition-colors font-label-bold text-label-bold">Export</button>
+<button class="flex items-center justify-center h-10 px-md rounded-lg bg-primary-container text-on-primary-container hover:opacity-90 transition-opacity font-label-bold text-label-bold shadow-sm">Beispieldokumente laden</button>
+<div class="flex items-center ml-sm border-l border-outline-variant pl-sm gap-xs">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-md md:p-xl">
+<div class="max-w-[1280px] mx-auto w-full flex flex-col xl:flex-row gap-lg">
+<!-- Form Section -->
+<div class="flex-1 flex flex-col gap-lg">
+<div class="mb-sm">
+<h2 class="text-h1 font-h1 text-on-surface mb-xs">Neue Änderung erfassen</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Dokumentieren Sie System- oder Prozessänderungen für die DSGVO-Bewertung.</p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-lg flex flex-col gap-lg">
+<!-- Grunddaten -->
+<div class="flex flex-col gap-md">
+<h3 class="text-h3 font-h3 text-on-surface border-b border-outline-variant pb-xs">1. Grunddaten</h3>
+<div class="flex flex-col gap-xs">
+<label class="text-label-bold font-label-bold text-on-surface" for="change-type">Änderungstyp</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-sm text-body-sm font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" id="change-type">
+<option disabled="" selected="" value="">Bitte wählen...</option>
+<option value="new_system">Neues System / Software</option>
+<option value="system_update">System Update / Upgrade</option>
+<option value="process_change">Prozessänderung</option>
+<option value="data_field">Neues Datenfeld</option>
+<option value="vendor_change">Dienstleisterwechsel</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="text-label-bold font-label-bold text-on-surface" for="change-desc">Beschreibung der Änderung</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-sm text-body-sm font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder-on-surface-variant" id="change-desc" placeholder="Beschreiben Sie kurz, was geändert wird und warum..." rows="4"></textarea>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="text-label-bold font-label-bold text-on-surface" for="affected-systems">Betroffene Systeme</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-sm py-sm text-body-sm font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder-on-surface-variant" id="affected-systems" placeholder="z.B. CRM, HR-System, Website" type="text"/>
+</div>
+</div>
+<!-- DSGVO Relevanz Check -->
+<div class="flex flex-col gap-md mt-sm">
+<h3 class="text-h3 font-h3 text-on-surface border-b border-outline-variant pb-xs">2. Relevanz-Check</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Bitte beantworten Sie die folgenden Fragen nach bestem Wissen.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Question 1 -->
+<div class="flex flex-col gap-sm p-sm rounded-lg border border-outline-variant bg-surface">
+<span class="text-label-bold font-label-bold text-on-surface">Werden neue personenbezogene Daten erfasst oder verarbeitet?</span>
+<div class="flex gap-sm">
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary border-outline-variant" name="q1" type="radio" value="yes"/>
+<span class="text-body-sm font-body-sm">Ja</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer">
+<input checked="" class="text-primary focus:ring-primary border-outline-variant" name="q1" type="radio" value="no"/>
+<span class="text-body-sm font-body-sm">Nein</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary border-outline-variant" name="q1" type="radio" value="unsure"/>
+<span class="text-body-sm font-body-sm">Unsicher</span>
+</label>
+</div>
+</div>
+<!-- Question 2 -->
+<div class="flex flex-col gap-sm p-sm rounded-lg border border-outline-variant bg-surface">
+<span class="text-label-bold font-label-bold text-on-surface">Sind Kunden oder externe Partner direkt betroffen?</span>
+<div class="flex gap-sm">
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary border-outline-variant" name="q2" type="radio" value="yes"/>
+<span class="text-body-sm font-body-sm">Ja</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary border-outline-variant" name="q2" type="radio" value="no"/>
+<span class="text-body-sm font-body-sm">Nein</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer">
+<input checked="" class="text-primary focus:ring-primary border-outline-variant" name="q2" type="radio" value="unsure"/>
+<span class="text-body-sm font-body-sm">Unsicher</span>
+</label>
+</div>
+</div>
+<!-- Question 3 -->
+<div class="flex flex-col gap-sm p-sm rounded-lg border border-outline-variant bg-surface">
+<span class="text-label-bold font-label-bold text-on-surface">Sind externe Dienstleister (Auftragsverarbeiter) beteiligt?</span>
+<div class="flex gap-sm">
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary border-outline-variant" name="q3" type="radio" value="yes"/>
+<span class="text-body-sm font-body-sm">Ja</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer">
+<input checked="" class="text-primary focus:ring-primary border-outline-variant" name="q3" type="radio" value="no"/>
+<span class="text-body-sm font-body-sm">Nein</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary border-outline-variant" name="q3" type="radio" value="unsure"/>
+<span class="text-body-sm font-body-sm">Unsicher</span>
+</label>
+</div>
+</div>
+<!-- Question 4 -->
+<div class="flex flex-col gap-sm p-sm rounded-lg border border-outline-variant bg-surface">
+<span class="text-label-bold font-label-bold text-on-surface">Beinhaltet die Änderung sicherheitsrelevante Aspekte (z.B. Authentifizierung)?</span>
+<div class="flex gap-sm">
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary border-outline-variant" name="q4" type="radio" value="yes"/>
+<span class="text-body-sm font-body-sm">Ja</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary border-outline-variant" name="q4" type="radio" value="no"/>
+<span class="text-body-sm font-body-sm">Nein</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="text-primary focus:ring-primary border-outline-variant" name="q4" type="radio" value="unsure"/>
+<span class="text-body-sm font-body-sm">Unsicher</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="mt-md pt-md border-t border-outline-variant flex items-center justify-end gap-md">
+<button class="flex items-center justify-center h-10 px-md rounded-lg border border-primary text-primary hover:bg-surface-container-high transition-colors font-label-bold text-label-bold">Entwurf speichern</button>
+<button class="flex items-center justify-center h-10 px-lg rounded-lg bg-primary-container text-on-primary-container hover:opacity-90 transition-opacity font-label-bold text-label-bold shadow-sm shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
+<span class="material-symbols-outlined mr-xs text-[20px]">psychology</span>
+                                Änderung bewerten
+                            </button>
+</div>
+</div>
+</div>
+<!-- Evaluation Result Sidebar (Placeholder) -->
+<div class="w-full xl:w-80 flex flex-col gap-md">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-md flex flex-col gap-md relative overflow-hidden">
+<div class="flex items-center gap-sm border-b border-outline-variant pb-xs">
+<span class="material-symbols-outlined text-primary">assessment</span>
+<h3 class="text-h3 font-h3 text-on-surface">Bewertungsergebnis</h3>
+</div>
+<div class="flex flex-col items-center justify-center py-xl text-center opacity-50">
+<span class="material-symbols-outlined text-[48px] text-on-surface-variant mb-sm">pending_actions</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant max-w-[200px]">Füllen Sie das Formular aus und klicken Sie auf "Änderung bewerten", um die Risikoanalyse zu starten.</p>
+</div>
+<!-- Hidden state (revealed after evaluation) -->
+<div class="hidden flex-col gap-md mt-sm">
+<div class="flex justify-between items-center">
+<span class="text-label-bold font-label-bold text-on-surface">Risiko-Einstufung:</span>
+<span class="px-sm py-xs rounded-full bg-error-container text-on-error-container text-label-sm font-label-sm font-bold">Hoch</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface bg-surface-variant p-sm rounded-lg border border-outline-variant">
+<strong>Handlungsbedarf:</strong> Eine Datenschutz-Folgenabschätzung (DSFA) wird empfohlen aufgrund der Erfassung neuer sensibler Daten in Kombination mit neuen Dienstleistern.
+                            </div>
+<div class="flex flex-col gap-xs mt-sm">
+<span class="text-label-bold font-label-bold text-on-surface">Nächste Schritte:</span>
+<ul class="list-disc list-inside text-body-sm font-body-sm text-on-surface-variant flex flex-col gap-xs pl-xs">
+<li>Verzeichnis der Verarbeitungstätigkeiten (VVT) aktualisieren</li>
+<li>Auftragsverarbeitungsvertrag (AVV) prüfen</li>
+<li>DSFA initiieren</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-md flex flex-col gap-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary">info</span>
+<span class="text-label-bold font-label-bold text-on-surface">Hinweis zur Datensicherheit</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">
+                            Alle eingegebenen Daten werden ausschließlich lokal verarbeitet. Es findet keine Übertragung an externe Cloud-Dienste statt.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
