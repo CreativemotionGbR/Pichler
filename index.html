@@ -3,188 +3,166 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lokale DSGVO-Dokumentenverwaltung</title>
+  <title>Lokale DSGVO-Änderungsbewertung</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="hero">
     <div>
       <p class="eyebrow">Lokale Browser-App · keine Installation · keine Cloud</p>
-      <h1>DSGVO-Dokumentenverwaltung und Änderungsbewertung</h1>
-      <p class="intro">Verwalte AVV-, TOM- und DSGVO-Dokumente lokal, bewerte Änderungen regelbasiert, erzeuge prüfbare Änderungsvorschläge und übernimm sie erst nach aktiver Bestätigung als neue Dokumentversion.</p>
+      <h1>DSGVO-Änderungsbewertung</h1>
+      <p class="intro">Erfasse technische Änderungen, bewerte sie regelbasiert und dokumentiere AVV-/TOM-Relevanz direkt im Browser. Alle Daten bleiben lokal in <code>localStorage</code>.</p>
     </div>
     <div class="privacy-card" aria-label="Datenschutzhinweise">
-      <strong>Lokale Sicherheit</strong>
+      <strong>Datenschutz</strong>
       <span>Keine externen APIs</span>
-      <span>Keine automatische Überschreibung</span>
-      <span>Versionierung bei jeder Übernahme</span>
+      <span>Kein IMAP / kein Login</span>
+      <span>Kein Tracking</span>
     </div>
   </header>
 
-  <main>
-    <section class="panel library-panel" aria-labelledby="library-title">
-      <div class="section-heading wrap">
+  <main class="app-shell">
+    <section class="panel form-panel" aria-labelledby="form-title">
+      <div class="section-heading">
         <div>
-          <h2 id="library-title">1. Dokumentenbibliothek</h2>
-          <p>Dokumente werden ausschließlich im Browser-localStorage gespeichert. Exportiere die Bibliothek regelmäßig als JSON.</p>
+          <h2 id="form-title">Änderung erfassen</h2>
+          <p>Pflichtfelder sind mit * markiert.</p>
         </div>
-        <div class="button-row">
-          <button id="loadSampleDocumentsBtn" class="secondary" type="button">Beispieldokumente laden</button>
-          <label class="file-button">Dokumente importieren
-            <input id="documentImport" type="file" accept=".json,.txt,.csv,application/json,text/plain,text/csv">
-          </label>
-          <button id="exportDocumentsBtn" class="secondary" type="button">Dokumentenbibliothek exportieren JSON</button>
-        </div>
+        <button id="resetFormBtn" class="secondary" type="button">Formular leeren</button>
       </div>
+
       <div id="storageWarning" class="alert warning hidden"></div>
-      <div id="documentMessage" class="alert hidden"></div>
-      <div class="grid library-grid">
-        <div>
-          <label>Dokument auswählen
-            <select id="documentSelect"></select>
+      <div id="validationErrors" class="alert danger hidden"></div>
+
+      <form id="changeForm" novalidate>
+        <div class="grid two">
+          <label>change_id *
+            <input id="change_id" name="change_id" type="text" placeholder="CHG-001" required>
           </label>
-          <div class="table-wrap compact">
-            <table id="documentTable"><thead></thead><tbody></tbody></table>
-          </div>
+          <label>date *
+            <input id="date" name="date" type="date" required>
+          </label>
         </div>
-        <div id="documentDetails" class="detail-box empty-state">Noch kein Dokument ausgewählt.</div>
-        <div>
-          <h3>Versionen</h3>
-          <div id="versionList" class="version-list empty-state">Noch keine Versionen vorhanden.</div>
-        </div>
-      </div>
-    </section>
 
-    <section class="mode-tabs" aria-label="Arbeitsmodus">
-      <button id="modeInternalBtn" class="tab active" type="button">Modus A: Interne Änderung übertragen</button>
-      <button id="modeExternalBtn" class="tab" type="button">Modus B: Externe Änderung analysieren</button>
-    </section>
+        <label>change_type *
+          <select id="change_type" name="change_type" required></select>
+        </label>
 
-    <section id="modeInternal" class="app-shell">
-      <section class="panel form-panel" aria-labelledby="form-title">
-        <div class="section-heading">
-          <div>
-            <h2 id="form-title">2A. Neue interne Änderung erfassen</h2>
-            <p>Pflichtfelder sind mit * markiert. CSV/TXT kann lokale Änderungsdaten vorbefüllen.</p>
-          </div>
-          <button id="resetFormBtn" class="secondary" type="button">Formular leeren</button>
+        <label>description *
+          <textarea id="description" name="description" rows="4" placeholder="Beschreibe die technische Änderung." required></textarea>
+        </label>
+
+        <div class="grid two">
+          <label>security_change *
+            <select id="security_change" name="security_change" required></select>
+          </label>
+          <label>affected_systems *
+            <input id="affected_systems" name="affected_systems" type="text" placeholder="z. B. Ticketsystem" required>
+          </label>
         </div>
-        <div id="validationErrors" class="alert danger hidden"></div>
-        <form id="changeForm" novalidate>
-          <div class="grid two">
-            <label>change_id *<input id="change_id" name="change_id" type="text" placeholder="CHG-001" required></label>
-            <label>date *<input id="date" name="date" type="date" required></label>
-          </div>
-          <label>change_type *<select id="change_type" name="change_type" required></select></label>
-          <label>description *<textarea id="description" name="description" rows="4" placeholder="Beschreibe die technische Änderung." required></textarea></label>
-          <div class="grid two">
-            <label>security_change *<select id="security_change" name="security_change" required></select></label>
-            <label>affected_systems *<input id="affected_systems" name="affected_systems" type="text" placeholder="z. B. Ticketsystem" required></label>
-          </div>
+
+        <div class="grid three">
+          <label>personal_data *
+            <select id="personal_data" name="personal_data" required></select>
+          </label>
+          <label>customers_affected *
+            <select id="customers_affected" name="customers_affected" required></select>
+          </label>
+          <label>external_parties *
+            <select id="external_parties" name="external_parties" required></select>
+          </label>
+        </div>
+
+        <div class="grid three">
+          <label>source
+            <input id="source" name="source" type="text" placeholder="Manuelle Eingabe">
+          </label>
+          <label>source_url
+            <input id="source_url" name="source_url" type="url" placeholder="https://...">
+          </label>
+          <label>number_of_customers
+            <input id="number_of_customers" name="number_of_customers" type="number" min="0" step="1" placeholder="0">
+          </label>
+        </div>
+
+        <div class="grid two">
+          <label>old_text
+            <textarea id="old_text" name="old_text" rows="3"></textarea>
+          </label>
+          <label>new_text
+            <textarea id="new_text" name="new_text" rows="3"></textarea>
+          </label>
+        </div>
+
+        <label>notes
+          <textarea id="notes" name="notes" rows="3"></textarea>
+        </label>
+
+        <details class="email-box">
+          <summary>Optional: E-Mail-Text oder .eml-Datei manuell übernehmen</summary>
+          <p>Kein Login, kein IMAP, keine automatische Verbindung. Inhalte werden nur lokal im Formular verwendet.</p>
           <div class="grid three">
-            <label>personal_data *<select id="personal_data" name="personal_data" required></select></label>
-            <label>customers_affected *<select id="customers_affected" name="customers_affected" required></select></label>
-            <label>external_parties *<select id="external_parties" name="external_parties" required></select></label>
+            <label>email_sender
+              <input id="email_sender" name="email_sender" type="text">
+            </label>
+            <label>email_subject
+              <input id="email_subject" name="email_subject" type="text">
+            </label>
+            <label>email_received_at
+              <input id="email_received_at" name="email_received_at" type="text" placeholder="2026-06-09 10:30">
+            </label>
           </div>
-          <div class="grid three">
-            <label>source<input id="source" name="source" type="text" placeholder="Manuelle Eingabe"></label>
-            <label>source_url<input id="source_url" name="source_url" type="url" placeholder="https://..."></label>
-            <label>number_of_customers<input id="number_of_customers" name="number_of_customers" type="number" min="0" step="1" placeholder="0"></label>
-          </div>
-          <div class="grid two">
-            <label>old_text<textarea id="old_text" name="old_text" rows="3"></textarea></label>
-            <label>new_text<textarea id="new_text" name="new_text" rows="3"></textarea></label>
-          </div>
-          <label>notes<textarea id="notes" name="notes" rows="3"></textarea></label>
+          <label>E-Mail-Text einfügen
+            <textarea id="emailText" rows="5" placeholder="Betreff, Absender und Nachrichtentext optional hier einfügen."></textarea>
+          </label>
           <div class="button-row">
-            <label class="file-button">Änderung aus CSV/TXT importieren<input id="changeImport" type="file" accept=".csv,.txt,text/csv,text/plain"></label>
+            <button id="applyEmailTextBtn" class="secondary" type="button">E-Mail-Text übernehmen</button>
+            <label class="file-button">.eml-Datei laden
+              <input id="emlUpload" type="file" accept=".eml,text/plain">
+            </label>
           </div>
-          <details class="email-box">
-            <summary>Optional: E-Mail-Text oder .eml-Datei manuell übernehmen</summary>
-            <p>Kein Login, kein IMAP, keine automatische Verbindung. Inhalte werden nur lokal im Formular verwendet.</p>
-            <div class="grid three">
-              <label>email_sender<input id="email_sender" name="email_sender" type="text"></label>
-              <label>email_subject<input id="email_subject" name="email_subject" type="text"></label>
-              <label>email_received_at<input id="email_received_at" name="email_received_at" type="text" placeholder="2026-06-09 10:30"></label>
-            </div>
-            <label>E-Mail-Text einfügen<textarea id="emailText" rows="5" placeholder="Betreff, Absender und Nachrichtentext optional hier einfügen."></textarea></label>
-            <div class="button-row">
-              <button id="applyEmailTextBtn" class="secondary" type="button">E-Mail-Text übernehmen</button>
-              <label class="file-button">.eml-Datei laden<input id="emlUpload" type="file" accept=".eml,text/plain"></label>
-            </div>
-          </details>
-          <div class="button-row sticky-actions">
-            <button id="evaluateBtn" type="button">Änderung bewerten</button>
-            <button id="saveBtn" class="success" type="button" disabled>Änderung speichern</button>
-          </div>
-        </form>
-      </section>
+        </details>
 
-      <section class="panel result-panel" aria-labelledby="result-title">
-        <h2 id="result-title">Bewertungsergebnis</h2>
-        <div id="resultBox" class="empty-state">Noch keine Bewertung.</div>
-      </section>
+        <div class="button-row sticky-actions">
+          <button id="evaluateBtn" type="button">Änderung bewerten</button>
+          <button id="saveBtn" class="success" type="button" disabled>Änderung speichern</button>
+        </div>
+      </form>
     </section>
 
-    <section id="modeExternal" class="panel hidden" aria-labelledby="external-title">
-      <div class="section-heading wrap">
-        <div>
-          <h2 id="external-title">2B. Externe Änderung analysieren</h2>
-          <p>Vergleiche ein gespeichertes Bestandsdokument mit neuem Text, z. B. neuen Nutzungsbedingungen.</p>
-        </div>
-        <button id="compareExternalBtn" type="button">Externe Änderung vergleichen</button>
-      </div>
-      <div id="externalErrors" class="alert danger hidden"></div>
-      <div class="grid two">
-        <label>Bestandsdokument<select id="externalDocumentSelect"></select></label>
-        <label>Neue Textdatei laden (TXT/CSV)<input id="externalTextUpload" type="file" accept=".txt,.csv,text/plain,text/csv"></label>
-      </div>
-      <label>Neuer externer Text<textarea id="externalNewText" rows="10" placeholder="Neue Nutzungsbedingungen, neue AVV-Version oder geänderte technische Dokumentation hier einfügen."></textarea></label>
-      <div id="externalResult" class="empty-state">Noch kein Vergleich gestartet.</div>
-    </section>
-
-    <section class="panel proposal-panel" aria-labelledby="proposal-title">
-      <div class="section-heading wrap">
-        <div>
-          <h2 id="proposal-title">3. Änderungsvorschlag</h2>
-          <p>Vorschläge sind Entwürfe. Dokumente werden erst nach aktiver Bestätigung versioniert übernommen.</p>
-        </div>
-        <div class="button-row">
-          <label>Zieldokument<select id="targetDocumentSelect"></select></label>
-          <button id="generateProposalBtn" type="button">Änderungsvorschlag erzeugen</button>
-        </div>
-      </div>
-      <div id="proposalMessage" class="alert hidden"></div>
-      <div id="proposalMeta" class="detail-box empty-state">Noch kein Vorschlag erzeugt.</div>
-      <label>Vorgeschlagener / bearbeitbarer Text<textarea id="proposalText" rows="10" placeholder="Hier erscheint der Änderungsvorschlag. Du kannst ihn vor der Übernahme bearbeiten."></textarea></label>
-      <div class="button-row">
-        <button id="applyProposalBtn" class="success" type="button" disabled>Änderung übernehmen</button>
-        <button id="saveReviewBtn" class="secondary" type="button" disabled>Nur als Prüfhinweis speichern</button>
-        <button id="discardProposalBtn" class="danger-button" type="button" disabled>Verwerfen</button>
-      </div>
-    </section>
-
-    <section class="panel history-panel" aria-labelledby="history-title">
-      <div class="section-heading wrap">
-        <div>
-          <h2 id="history-title">4. Änderungshistorie</h2>
-          <p>Alle Bewertungen, Prüfhinweise, verworfenen Entwürfe und bestätigten Dokumentversionen.</p>
-        </div>
-        <div class="button-row">
-          <button id="loadSamplesBtn" class="secondary" type="button">Beispieländerungen laden</button>
-          <label class="file-button">CSV importieren<input id="csvUpload" type="file" accept=".csv,text/csv"></label>
-          <button id="exportJsonBtn" class="secondary" type="button">Änderungshistorie exportieren JSON</button>
-          <button id="exportCsvBtn" class="secondary" type="button">Änderungshistorie exportieren CSV</button>
-          <button id="clearDataBtn" class="danger-button" type="button">Lokale Daten löschen</button>
-        </div>
-      </div>
-      <div id="importErrors" class="alert danger hidden"></div>
-      <div class="table-wrap"><table id="historyTable"><thead></thead><tbody></tbody></table></div>
+    <section class="panel result-panel" aria-labelledby="result-title">
+      <h2 id="result-title">Bewertungsergebnis</h2>
+      <div id="resultBox" class="empty-state">Noch keine Bewertung. Fülle das Formular aus und klicke auf „Änderung bewerten“.</div>
     </section>
   </main>
 
+  <section class="panel history-panel" aria-labelledby="history-title">
+    <div class="section-heading wrap">
+      <div>
+        <h2 id="history-title">Lokale Änderungshistorie</h2>
+        <p>Gespeichert im Browser-localStorage. Exportiere die Daten bei Bedarf als Sicherung.</p>
+      </div>
+      <div class="button-row">
+        <button id="loadSamplesBtn" class="secondary" type="button">Beispieldaten laden</button>
+        <label class="file-button">CSV importieren
+          <input id="csvUpload" type="file" accept=".csv,text/csv">
+        </label>
+        <button id="exportJsonBtn" class="secondary" type="button">JSON exportieren</button>
+        <button id="exportCsvBtn" class="secondary" type="button">CSV exportieren</button>
+        <button id="clearDataBtn" class="danger-button" type="button">lokale Daten löschen</button>
+      </div>
+    </div>
+    <div id="importErrors" class="alert danger hidden"></div>
+    <div class="table-wrap">
+      <table id="historyTable">
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
   <footer>
-    <p>Dieses Tool erstellt regelbasierte Prüfhinweise und Entwürfe. Es gibt keine Rechtsberatung und ersetzt keine Prüfung durch fachkundige Personen.</p>
+    <p>Hinweis: Diese regelbasierte Bewertung ist eine Dokumentationshilfe und ersetzt keine rechtliche Prüfung.</p>
   </footer>
 
   <script src="script.js"></script>
