@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Versionen - DSGVO Change Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#dbe1ff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "error": "#ba1a1a",
+                        "tertiary": "#525657",
+                        "surface-container": "#e7eeff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "surface-tint": "#0053db",
+                        "surface-container-high": "#dee8ff",
+                        "secondary": "#505f76",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#d3e4fe",
+                        "primary": "#004ac6",
+                        "on-surface": "#111c2d",
+                        "tertiary-container": "#6b6e70",
+                        "on-primary-fixed": "#00174b",
+                        "on-background": "#111c2d",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-variant": "#d8e3fb",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c3c6d7",
+                        "surface": "#f9f9ff",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-container-low": "#f0f3ff",
+                        "on-tertiary-container": "#eff1f3",
+                        "outline": "#737686",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "inverse-surface": "#263143",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-dim": "#cfdaf2",
+                        "primary-container": "#2563eb",
+                        "on-surface-variant": "#434655",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-highest": "#d8e3fb",
+                        "secondary-container": "#d0e1fb",
+                        "background": "#f9f9ff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-primary-fixed-variant": "#003ea8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "base": "8px",
+                        "xl": "32px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "h3": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "h2": ["Inter"],
+                        "h1": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h3": ["18px", {"lineHeight": "28px", "letterSpacing": "0", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0", "fontWeight": "500"}],
+                        "h1-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h1": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-bold": ["13px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-on-background flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="flex flex-col h-screen p-md gap-base border-r border-outline-variant bg-surface-container-low docked left-0 w-64 hidden md:flex shrink-0">
+<div class="mb-lg px-xs">
+<h1 class="text-h3 font-h3 font-semibold text-on-surface">DPO Workspace</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Lokale Dokumentenverwaltung</p>
+</div>
+<nav class="flex flex-col gap-xs flex-grow">
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span aria-hidden="true" class="material-symbols-outlined text-on-surface-variant" data-icon="dashboard">dashboard</span>
+<span class="text-label-bold font-label-bold">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span aria-hidden="true" class="material-symbols-outlined text-on-surface-variant" data-icon="description">description</span>
+<span class="text-label-bold font-label-bold">Dokumentenbibliothek</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span aria-hidden="true" class="material-symbols-outlined text-on-surface-variant" data-icon="edit_document">edit_document</span>
+<span class="text-label-bold font-label-bold">Interne Änderung erfassen</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span aria-hidden="true" class="material-symbols-outlined text-on-surface-variant" data-icon="analytics">analytics</span>
+<span class="text-label-bold font-label-bold">Externe Änderung analysieren</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span aria-hidden="true" class="material-symbols-outlined text-on-surface-variant" data-icon="lightbulb">lightbulb</span>
+<span class="text-label-bold font-label-bold">Änderungsvorschläge</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm bg-secondary-container text-on-secondary-container font-label-bold rounded-lg opacity-80" href="#">
+<span aria-hidden="true" class="material-symbols-outlined icon-fill text-on-secondary-container" data-icon="history">history</span>
+<span class="text-label-bold font-label-bold">Versionen</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span aria-hidden="true" class="material-symbols-outlined text-on-surface-variant" data-icon="timeline">timeline</span>
+<span class="text-label-bold font-label-bold">Änderungshistorie</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm text-on-surface-variant hover:bg-surface-variant rounded-lg hover:bg-surface-container-highest transition-all duration-200 mt-auto" href="#">
+<span aria-hidden="true" class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+<span class="text-label-bold font-label-bold">Einstellungen</span>
+</a>
+</nav>
+</aside>
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-lg py-md w-full bg-surface shadow-sm border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<span class="text-h2 font-h2 font-bold text-primary">DSGVO Change Manager</span>
+<nav class="hidden md:flex gap-lg ml-xl">
+<span class="text-on-secondary-container font-label-sm">Lokal · Keine Cloud · Keine externen APIs</span>
+</nav>
+</div>
+<div class="flex items-center gap-sm">
+<button class="px-md py-base border border-primary text-primary font-label-bold rounded hover:bg-surface-container-high transition-colors text-label-bold">
+                    Export
+                </button>
+<button class="px-md py-base bg-primary-container text-on-primary font-label-bold rounded hover:bg-primary transition-colors text-label-bold">
+                    Beispieldokumente laden
+                </button>
+<button aria-label="Delete" class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto p-lg md:p-xl flex flex-col gap-xl max-w-container-max mx-auto w-full">
+<!-- Context Header -->
+<div class="flex flex-col gap-xs">
+<div class="flex items-center gap-sm text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-base" data-icon="folder">folder</span>
+<span>Auftragsverarbeitung</span>
+<span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+<span>AVV Vorlagen</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-h1 font-h1 text-on-background">AVV_Standard_v1.docx</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant mt-xs">Versionsverlauf und Änderungsprotokoll</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-md py-base border border-outline-variant text-on-surface font-label-bold rounded bg-surface-container-lowest hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="compare_arrows">compare_arrows</span>
+<span class="text-label-bold">Versionen vergleichen</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bento Layout Area -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg flex-1 min-h-0">
+<!-- Left Column: Document Meta & Current State (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- Current Version Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-lg">
+<div class="flex justify-between items-center mb-md border-b border-surface-container-high pb-sm">
+<h3 class="text-label-bold font-label-bold text-on-surface">Aktuelle Version</h3>
+<span class="bg-primary-container text-on-primary text-xs font-bold px-sm py-xs rounded-full">v2.1 (Live)</span>
+</div>
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Geändert am</span>
+<span class="text-body-sm font-body-sm text-on-surface">24. Okt 2023, 14:30</span>
+</div>
+<div class="flex justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Bearbeiter</span>
+<span class="text-body-sm font-body-sm text-on-surface">Dr. M. Schmidt</span>
+</div>
+<div class="flex justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Status</span>
+<span class="text-body-sm font-body-sm text-secondary">Freigegeben</span>
+</div>
+</div>
+<button class="mt-md w-full flex justify-center items-center gap-xs px-md py-sm border border-primary text-primary font-label-bold rounded hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+<span class="text-label-bold">Herunterladen</span>
+</button>
+</div>
+<!-- Risk/Impact Assessment -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-lg">
+<div class="flex items-center gap-sm mb-md pb-sm border-b border-surface-container-high">
+<span class="material-symbols-outlined text-secondary" data-icon="security">security</span>
+<h3 class="text-label-bold font-label-bold text-on-surface">Risikobewertung (Letzte Änderung)</h3>
+</div>
+<div class="flex items-center gap-md mb-sm">
+<div class="bg-[#ffdad6] text-[#93000a] px-sm py-xs rounded-full text-label-bold font-label-bold">Hoch</div>
+<span class="text-body-sm font-body-sm text-on-surface">Anpassung der TOMs erfordert Prüfung</span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Die Änderungen in v2.1 betreffen Kernpunkte der technischen und organisatorischen Maßnahmen gemäß Art. 32 DSGVO.</p>
+</div>
+</div>
+<!-- Right Column: Timeline (8 cols) -->
+<div class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm flex flex-col h-full">
+<div class="p-md border-b border-outline-variant bg-[#F1F5F9] rounded-t-xl flex justify-between items-center">
+<h3 class="text-label-bold font-label-bold text-on-surface">Historie &amp; Änderungen</h3>
+<div class="flex gap-sm">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Filter:</span>
+<span class="text-label-sm font-label-sm text-primary cursor-pointer hover:underline">Alle</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-lg relative">
+<!-- Timeline Line -->
+<div class="absolute left-[39px] top-lg bottom-lg w-px bg-outline-variant"></div>
+<div class="flex flex-col gap-lg">
+<!-- Timeline Item: v2.1 -->
+<div class="relative pl-xl">
+<div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-primary ring-4 ring-surface-container-lowest z-10"></div>
+<div class="flex flex-col gap-xs">
+<div class="flex items-baseline justify-between">
+<div class="flex items-center gap-sm">
+<span class="text-h3 font-h3 text-on-surface">v2.1</span>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded uppercase">Aktuell</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">24. Okt 2023</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface font-medium">TOMs aktualisiert (Anlage 2)</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant bg-surface-container-low p-sm rounded border border-outline-variant mt-xs">
+                                        Subunternehmerliste aktualisiert und Verschlüsselungsstandards für Daten im Ruhezustand präzisiert.
+                                    </div>
+<div class="flex items-center gap-xs mt-xs text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="person">person</span>
+<span>Dr. M. Schmidt</span>
+</div>
+</div>
+</div>
+<!-- Timeline Item: v2.0 -->
+<div class="relative pl-xl">
+<div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-outline-variant ring-4 ring-surface-container-lowest z-10"></div>
+<div class="flex flex-col gap-xs">
+<div class="flex items-baseline justify-between">
+<span class="text-body-lg font-body-lg font-semibold text-on-surface">v2.0</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">15. Sep 2023</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface font-medium">Major Update: Schrems II Anpassungen</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant bg-surface p-sm rounded border border-outline-variant mt-xs">
+                                        Einfügung der neuen Standardvertragsklauseln (SCCs) der EU-Kommission. Löschung alter Privacy Shield Referenzen.
+                                    </div>
+<div class="flex items-center gap-xs mt-xs text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="person">person</span>
+<span>Legal Dept.</span>
+</div>
+</div>
+</div>
+<!-- Timeline Item: v1.2 -->
+<div class="relative pl-xl">
+<div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-outline-variant ring-4 ring-surface-container-lowest z-10"></div>
+<div class="flex flex-col gap-xs">
+<div class="flex items-baseline justify-between">
+<span class="text-body-lg font-body-lg font-semibold text-on-surface">v1.2</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">03. Mär 2022</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface font-medium">Subunternehmerliste aktualisiert</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant mt-xs">
+                                        Hinzufügung von AWS Frankfurt als primärer Hosting-Provider.
+                                    </div>
+<div class="flex items-center gap-xs mt-xs text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="person">person</span>
+<span>IT Admin</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

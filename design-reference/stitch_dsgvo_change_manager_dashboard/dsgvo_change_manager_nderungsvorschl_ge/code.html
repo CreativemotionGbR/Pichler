@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Änderungsvorschläge - DSGVO Change Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#dbe1ff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "error": "#ba1a1a",
+                        "tertiary": "#525657",
+                        "surface-container": "#e7eeff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "surface-tint": "#0053db",
+                        "surface-container-high": "#dee8ff",
+                        "secondary": "#505f76",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#d3e4fe",
+                        "primary": "#004ac6",
+                        "on-surface": "#111c2d",
+                        "tertiary-container": "#6b6e70",
+                        "on-primary-fixed": "#00174b",
+                        "on-background": "#111c2d",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-variant": "#d8e3fb",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c3c6d7",
+                        "surface": "#f9f9ff",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-container-low": "#f0f3ff",
+                        "on-tertiary-container": "#eff1f3",
+                        "outline": "#737686",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "inverse-surface": "#263143",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-dim": "#cfdaf2",
+                        "primary-container": "#2563eb",
+                        "on-surface-variant": "#434655",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-highest": "#d8e3fb",
+                        "secondary-container": "#d0e1fb",
+                        "background": "#f9f9ff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-primary-fixed-variant": "#003ea8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "base": "8px",
+                        "xl": "32px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "h3": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "h2": ["Inter"],
+                        "h1": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h3": ["18px", { "lineHeight": "28px", "letterSpacing": "0", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0", "fontWeight": "500" }],
+                        "h1-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "h2": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "h1": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-bold": ["13px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f9f9ff; /* surface */
+        }
+    </style>
+</head>
+<body class="flex bg-surface text-on-surface antialiased min-h-screen">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen p-md gap-base border-r border-outline-variant bg-surface-container-low dark:bg-surface-dim docked left-0 w-64 shrink-0 shadow-none sticky top-0">
+<div class="mb-lg px-xs">
+<h1 class="text-h3 font-h3 font-semibold text-on-surface">DPO Workspace</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Lokale Dokumentenverwaltung</p>
+</div>
+<ul class="flex flex-col gap-xs flex-1">
+<li>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="text-label-bold font-label-bold">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">description</span>
+<span class="text-label-bold font-label-bold">Dokumentenbibliothek</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">edit_document</span>
+<span class="text-label-bold font-label-bold">Interne Änderung erfassen</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
+<span class="text-label-bold font-label-bold">Externe Änderung analysieren</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg bg-secondary-container text-on-secondary-container font-label-bold opacity-80 hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<span class="text-label-bold font-label-bold">Änderungsvorschläge</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+<span class="text-label-bold font-label-bold">Versionen</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">timeline</span>
+<span class="text-label-bold font-label-bold">Änderungshistorie</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-sm py-sm rounded-lg text-on-surface-variant hover:bg-surface-variant hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="text-label-bold font-label-bold">Einstellungen</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto pt-md border-t border-outline-variant flex items-center gap-sm px-xs">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-primary font-bold overflow-hidden">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="text-label-bold font-label-bold text-on-surface">Admin User</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">DPO</p>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 bg-background overflow-hidden h-screen">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-lg py-md w-full bg-surface shadow-sm border-b border-outline-variant dark:border-on-surface-variant">
+<div class="flex items-center gap-md">
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden p-xs text-on-surface-variant hover:bg-surface-container-high rounded-md">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="text-h2 font-h2 font-bold text-primary dark:text-primary-fixed">DSGVO Change Manager</div>
+</div>
+<div class="flex items-center gap-md">
+<nav class="hidden lg:flex gap-lg mr-lg">
+<a class="text-on-secondary-container font-label-sm hover:bg-surface-container-high transition-colors px-xs py-xs" href="#">Lokal · Keine Cloud · Keine externen APIs</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="hidden sm:flex text-label-bold font-label-bold text-primary border border-primary px-md py-sm rounded-lg hover:bg-surface-container-high transition-colors">
+                        Export
+                    </button>
+<button class="text-label-bold font-label-bold text-on-primary bg-primary-container px-md py-sm rounded-lg hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors">
+                        Beispieldokumente laden
+                    </button>
+<button aria-label="Delete" class="p-xs text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors ml-sm">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 overflow-y-auto p-md md:p-lg lg:p-xl">
+<div class="max-w-container-max mx-auto">
+<div class="mb-xl flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h2 class="text-h1 font-h1 text-on-surface mb-xs">Änderungsvorschläge</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Überprüfen und entscheiden Sie über generierte Compliance-Anpassungen.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container border border-outline-variant rounded-lg text-label-bold font-label-bold text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                        </button>
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container border border-outline-variant rounded-lg text-label-bold font-label-bold text-on-surface hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">sort</span> Sortieren
+                        </button>
+</div>
+</div>
+<!-- Proposals Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-lg">
+<!-- Card 1: High Impact -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] transition-shadow overflow-hidden flex flex-col relative group">
+<!-- High Impact Indicator Bar -->
+<div class="absolute top-0 left-0 w-1 h-full bg-error"></div>
+<div class="p-md md:p-lg border-b border-outline-variant bg-surface flex flex-wrap justify-between items-start gap-sm pl-xl">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<h3 class="text-h3 font-h3 text-on-surface">AVV aktualisieren</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-error-container text-on-error-container text-label-sm font-label-bold">
+<span class="material-symbols-outlined text-[14px] mr-1">warning</span> Hoch
+                                    </span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Externes Assessment: Schrems II / TDF</p>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Erstellt: Heute, 10:42</span>
+</div>
+</div>
+<div class="p-md md:p-lg flex-1 flex flex-col gap-md pl-xl">
+<div>
+<h4 class="text-label-bold font-label-bold text-on-surface mb-xs uppercase tracking-wider text-[11px] text-on-surface-variant">Begründung</h4>
+<p class="text-body-sm font-body-sm text-on-surface">Neuer Beschluss der Aufsichtsbehörde erfordert explizite Nennung der Standardvertragsklauseln (SCC) Modul 2 im Anhang der AVV für den Dienstleister 'CloudAnalytics GmbH'.</p>
+</div>
+<div class="bg-surface-container-low rounded-lg p-md border border-outline-variant">
+<h4 class="text-label-bold font-label-bold text-on-surface mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">edit_note</span> Vorgeschlagener Text
+                                </h4>
+<div class="relative">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-md"></div>
+<p class="text-body-sm font-body-sm text-on-surface pl-md font-mono text-[13px] leading-relaxed">
+                                        "Die Parteien vereinbaren die Geltung der Standarddatenschutzklauseln (Beschluss (EU) 2021/914) in der Fassung Modul 2 (Verantwortlicher an Auftragsverarbeiter). Die entsprechenden Anhänge I und II sind diesem Vertrag als Anlage 3 beigefügt und bilden einen integralen Bestandteil."
+                                    </p>
+</div>
+</div>
+</div>
+<div class="p-md bg-surface-container-lowest border-t border-outline-variant flex flex-wrap items-center gap-sm justify-end pl-xl">
+<button class="px-md py-sm text-label-bold font-label-bold text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors mr-auto">
+                                Verwerfen
+                            </button>
+<button class="px-md py-sm border border-primary text-primary text-label-bold font-label-bold rounded-lg hover:bg-surface-container-high transition-colors">
+                                Prüfhinweis speichern
+                            </button>
+<button class="px-md py-sm bg-primary-container text-on-primary text-label-bold font-label-bold rounded-lg hover:bg-primary hover:text-on-primary transition-colors shadow-sm">
+                                Übernehmen
+                            </button>
+</div>
+</div>
+<!-- Card 2: Medium Impact -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] transition-shadow overflow-hidden flex flex-col relative group">
+<div class="absolute top-0 left-0 w-1 h-full bg-surface-tint opacity-50"></div>
+<div class="p-md md:p-lg border-b border-outline-variant bg-surface flex flex-wrap justify-between items-start gap-sm pl-xl">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<h3 class="text-h3 font-h3 text-on-surface">TOMs Ergänzung</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed-variant text-label-sm font-label-bold">
+                                        Mittel
+                                    </span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Internes Audit: Q3/2023</p>
+</div>
+<div class="text-right">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Erstellt: Gestern, 14:15</span>
+</div>
+</div>
+<div class="p-md md:p-lg flex-1 flex flex-col gap-md pl-xl">
+<div>
+<h4 class="text-label-bold font-label-bold text-on-surface mb-xs uppercase tracking-wider text-[11px] text-on-surface-variant">Begründung</h4>
+<p class="text-body-sm font-body-sm text-on-surface">Einführung von Multi-Faktor-Authentifizierung (MFA) für alle administrativen Zugänge im CRM-System muss in den Technischen und Organisatorischen Maßnahmen (TOMs) dokumentiert werden.</p>
+</div>
+<div class="bg-surface-container-low rounded-lg p-md border border-outline-variant">
+<h4 class="text-label-bold font-label-bold text-on-surface mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">edit_note</span> Vorgeschlagener Text
+                                </h4>
+<div class="relative">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-md"></div>
+<p class="text-body-sm font-body-sm text-on-surface pl-md font-mono text-[13px] leading-relaxed">
+                                        "Zugangskontrolle: Absicherung aller privilegierten Konten und Remote-Zugänge durch zwingende Multi-Faktor-Authentifizierung (MFA) auf Basis von zeitbasierten Einmalpasswörtern (TOTP) oder Hardware-Token."
+                                    </p>
+</div>
+</div>
+</div>
+<div class="p-md bg-surface-container-lowest border-t border-outline-variant flex flex-wrap items-center gap-sm justify-end pl-xl">
+<button class="px-md py-sm text-label-bold font-label-bold text-on-surface-variant hover:bg-surface-container rounded-lg transition-colors mr-auto">
+                                Verwerfen
+                            </button>
+<button class="px-md py-sm border border-primary text-primary text-label-bold font-label-bold rounded-lg hover:bg-surface-container-high transition-colors">
+                                Prüfhinweis speichern
+                            </button>
+<button class="px-md py-sm bg-primary-container text-on-primary text-label-bold font-label-bold rounded-lg hover:bg-primary transition-colors shadow-sm">
+                                Übernehmen
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
