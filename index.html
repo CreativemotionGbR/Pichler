@@ -3,167 +3,261 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lokale DSGVO-Änderungsbewertung</title>
+  <title>DSGVO Change Manager · Lokale Änderungsbewertung</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="hero">
-    <div>
-      <p class="eyebrow">Lokale Browser-App · keine Installation · keine Cloud</p>
-      <h1>DSGVO-Änderungsbewertung</h1>
-      <p class="intro">Erfasse technische Änderungen, bewerte sie regelbasiert und dokumentiere AVV-/TOM-Relevanz direkt im Browser. Alle Daten bleiben lokal in <code>localStorage</code>.</p>
-    </div>
-    <div class="privacy-card" aria-label="Datenschutzhinweise">
-      <strong>Datenschutz</strong>
-      <span>Keine externen APIs</span>
-      <span>Kein IMAP / kein Login</span>
-      <span>Kein Tracking</span>
-    </div>
-  </header>
-
-  <main class="app-shell">
-    <section class="panel form-panel" aria-labelledby="form-title">
-      <div class="section-heading">
+  <div class="workspace-shell">
+    <aside class="sidebar" aria-label="Hauptnavigation">
+      <div class="brand-block">
+        <div class="brand-mark">D</div>
         <div>
-          <h2 id="form-title">Änderung erfassen</h2>
-          <p>Pflichtfelder sind mit * markiert.</p>
+          <p class="brand-kicker">DPO Workspace</p>
+          <strong>Lokale Dokumentenverwaltung</strong>
         </div>
-        <button id="resetFormBtn" class="secondary" type="button">Formular leeren</button>
       </div>
+      <nav class="side-nav">
+        <a href="#dashboard" class="nav-item active"><span aria-hidden="true">▦</span>Dashboard</a>
+        <a href="#history-title" class="nav-item"><span aria-hidden="true">▤</span>Dokumentenbibliothek</a>
+        <a href="#form-title" class="nav-item"><span aria-hidden="true">✎</span>Interne Änderung erfassen</a>
+        <a href="#emailImport" class="nav-item"><span aria-hidden="true">◎</span>Externe Änderung analysieren</a>
+        <a href="#result-title" class="nav-item"><span aria-hidden="true">💡</span>Änderungsvorschläge</a>
+        <a href="#history-title" class="nav-item"><span aria-hidden="true">◷</span>Änderungshistorie</a>
+        <a href="#settings" class="nav-item nav-bottom"><span aria-hidden="true">⚙</span>Einstellungen</a>
+      </nav>
+    </aside>
 
-      <div id="storageWarning" class="alert warning hidden"></div>
-      <div id="validationErrors" class="alert danger hidden"></div>
-
-      <form id="changeForm" novalidate>
-        <div class="grid two">
-          <label>change_id *
-            <input id="change_id" name="change_id" type="text" placeholder="CHG-001" required>
-          </label>
-          <label>date *
-            <input id="date" name="date" type="date" required>
-          </label>
+    <div class="content-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Lokal · Keine Cloud · Keine externen APIs</p>
+          <h1>DSGVO Change Manager</h1>
         </div>
-
-        <label>change_type *
-          <select id="change_type" name="change_type" required></select>
-        </label>
-
-        <label>description *
-          <textarea id="description" name="description" rows="4" placeholder="Beschreibe die technische Änderung." required></textarea>
-        </label>
-
-        <div class="grid two">
-          <label>security_change *
-            <select id="security_change" name="security_change" required></select>
-          </label>
-          <label>affected_systems *
-            <input id="affected_systems" name="affected_systems" type="text" placeholder="z. B. Ticketsystem" required>
-          </label>
+        <div class="topbar-actions" aria-label="Schnellaktionen">
+          <button id="topExportJsonBtn" class="secondary" type="button">Export</button>
+          <button id="topLoadSamplesBtn" type="button">Beispieldokumente laden</button>
+          <button id="topClearDataBtn" class="icon-button danger-button" type="button" aria-label="Lokale Daten löschen">⌫</button>
         </div>
+      </header>
 
-        <div class="grid three">
-          <label>personal_data *
-            <select id="personal_data" name="personal_data" required></select>
-          </label>
-          <label>customers_affected *
-            <select id="customers_affected" name="customers_affected" required></select>
-          </label>
-          <label>external_parties *
-            <select id="external_parties" name="external_parties" required></select>
-          </label>
-        </div>
-
-        <div class="grid three">
-          <label>source
-            <input id="source" name="source" type="text" placeholder="Manuelle Eingabe">
-          </label>
-          <label>source_url
-            <input id="source_url" name="source_url" type="url" placeholder="https://...">
-          </label>
-          <label>number_of_customers
-            <input id="number_of_customers" name="number_of_customers" type="number" min="0" step="1" placeholder="0">
-          </label>
-        </div>
-
-        <div class="grid two">
-          <label>old_text
-            <textarea id="old_text" name="old_text" rows="3"></textarea>
-          </label>
-          <label>new_text
-            <textarea id="new_text" name="new_text" rows="3"></textarea>
-          </label>
-        </div>
-
-        <label>notes
-          <textarea id="notes" name="notes" rows="3"></textarea>
-        </label>
-
-        <details class="email-box">
-          <summary>Optional: E-Mail-Text oder .eml-Datei manuell übernehmen</summary>
-          <p>Kein Login, kein IMAP, keine automatische Verbindung. Inhalte werden nur lokal im Formular verwendet.</p>
-          <div class="grid three">
-            <label>email_sender
-              <input id="email_sender" name="email_sender" type="text">
-            </label>
-            <label>email_subject
-              <input id="email_subject" name="email_subject" type="text">
-            </label>
-            <label>email_received_at
-              <input id="email_received_at" name="email_received_at" type="text" placeholder="2026-06-09 10:30">
-            </label>
+      <main id="dashboard" class="main-canvas">
+        <section class="context-hero" aria-labelledby="dashboard-title">
+          <div>
+            <div class="breadcrumb"><span>DSGVO</span><span>›</span><span>Change Assessment</span></div>
+            <h2 id="dashboard-title">Dashboard</h2>
+            <p>Erfasse technische Änderungen, bewerte sie regelbasiert und dokumentiere AVV-/TOM-Relevanz direkt im Browser. Alle Daten bleiben lokal in <code>localStorage</code>.</p>
           </div>
-          <label>E-Mail-Text einfügen
-            <textarea id="emailText" rows="5" placeholder="Betreff, Absender und Nachrichtentext optional hier einfügen."></textarea>
-          </label>
-          <div class="button-row">
-            <button id="applyEmailTextBtn" class="secondary" type="button">E-Mail-Text übernehmen</button>
-            <label class="file-button">.eml-Datei laden
-              <input id="emlUpload" type="file" accept=".eml,text/plain">
-            </label>
+          <div class="privacy-card" aria-label="Datenschutzhinweise">
+            <strong>Datenschutz</strong>
+            <span>Keine externen APIs</span>
+            <span>Kein IMAP / kein Login</span>
+            <span>Kein Tracking</span>
           </div>
-        </details>
+        </section>
 
-        <div class="button-row sticky-actions">
-          <button id="evaluateBtn" type="button">Änderung bewerten</button>
-          <button id="saveBtn" class="success" type="button" disabled>Änderung speichern</button>
+        <section class="stats-grid" aria-label="Dashboard-Kennzahlen">
+          <article class="stat-card">
+            <div class="stat-icon">▤</div>
+            <p>Dokumentierte Änderungen</p>
+            <strong id="statTotalChanges">0</strong>
+            <span>Lokale Historie</span>
+          </article>
+          <article class="stat-card accent-warning">
+            <div class="stat-icon">💡</div>
+            <p>Offene Änderungsvorschläge</p>
+            <strong id="statOpenReviews">0</strong>
+            <span>Manuelle Prüfung</span>
+          </article>
+          <article class="stat-card accent-danger">
+            <div class="stat-icon">⚠</div>
+            <p>High Impact Änderungen</p>
+            <strong id="statHighImpact">0</strong>
+            <span>AVV/TOM prüfen</span>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon">↻</div>
+            <p>Letzte Aktualisierung</p>
+            <strong id="statLastUpdate">Heute</strong>
+            <span id="statImpactSplit">Low: 0 · Med: 0 · High: 0</span>
+          </article>
+        </section>
+
+        <div class="work-grid">
+          <section class="panel form-panel" aria-labelledby="form-title">
+            <div class="section-heading">
+              <div>
+                <p class="panel-kicker">1. Grunddaten</p>
+                <h2 id="form-title">Neue Änderung erfassen</h2>
+                <p>Dokumentiere System- oder Prozessänderungen für die DSGVO-Bewertung. Pflichtfelder sind mit * markiert.</p>
+              </div>
+              <button id="resetFormBtn" class="secondary" type="button">Entwurf leeren</button>
+            </div>
+
+            <div id="storageWarning" class="alert warning hidden"></div>
+            <div id="validationErrors" class="alert danger hidden"></div>
+
+            <form id="changeForm" novalidate>
+              <div class="grid two">
+                <label>change_id *
+                  <input id="change_id" name="change_id" type="text" placeholder="CHG-001" required>
+                </label>
+                <label>date *
+                  <input id="date" name="date" type="date" required>
+                </label>
+              </div>
+
+              <label>change_type *
+                <select id="change_type" name="change_type" required></select>
+              </label>
+
+              <label>description *
+                <textarea id="description" name="description" rows="4" placeholder="Beschreibe die technische Änderung." required></textarea>
+              </label>
+
+              <div class="grid two">
+                <label>security_change *
+                  <select id="security_change" name="security_change" required></select>
+                </label>
+                <label>affected_systems *
+                  <input id="affected_systems" name="affected_systems" type="text" placeholder="z. B. Ticketsystem" required>
+                </label>
+              </div>
+
+              <div class="section-subtitle">2. Relevanz-Check</div>
+              <div class="grid three">
+                <label>personal_data *
+                  <select id="personal_data" name="personal_data" required></select>
+                </label>
+                <label>customers_affected *
+                  <select id="customers_affected" name="customers_affected" required></select>
+                </label>
+                <label>external_parties *
+                  <select id="external_parties" name="external_parties" required></select>
+                </label>
+              </div>
+
+              <div class="grid three">
+                <label>source
+                  <input id="source" name="source" type="text" placeholder="Manuelle Eingabe">
+                </label>
+                <label>source_url
+                  <input id="source_url" name="source_url" type="url" placeholder="https://...">
+                </label>
+                <label>number_of_customers
+                  <input id="number_of_customers" name="number_of_customers" type="number" min="0" step="1" placeholder="0">
+                </label>
+              </div>
+
+              <div class="grid two">
+                <label>old_text
+                  <textarea id="old_text" name="old_text" rows="3" placeholder="Bisheriger Text oder Klausel"></textarea>
+                </label>
+                <label>new_text
+                  <textarea id="new_text" name="new_text" rows="3" placeholder="Neuer Text oder Klausel"></textarea>
+                </label>
+              </div>
+
+              <label>notes
+                <textarea id="notes" name="notes" rows="3" placeholder="Interne Notizen, offene Punkte, Quellenhinweise"></textarea>
+              </label>
+
+              <details id="emailImport" class="email-box">
+                <summary>Externe Änderung analysieren: E-Mail-Text oder .eml-Datei manuell übernehmen</summary>
+                <p>Kein Login, kein IMAP, keine automatische Verbindung. Inhalte werden nur lokal im Formular verwendet.</p>
+                <div class="grid three">
+                  <label>email_sender
+                    <input id="email_sender" name="email_sender" type="text">
+                  </label>
+                  <label>email_subject
+                    <input id="email_subject" name="email_subject" type="text">
+                  </label>
+                  <label>email_received_at
+                    <input id="email_received_at" name="email_received_at" type="text" placeholder="2026-06-09 10:30">
+                  </label>
+                </div>
+                <label>E-Mail-Text einfügen
+                  <textarea id="emailText" rows="5" placeholder="Betreff, Absender und Nachrichtentext optional hier einfügen."></textarea>
+                </label>
+                <div class="button-row">
+                  <button id="applyEmailTextBtn" class="secondary" type="button">E-Mail-Text übernehmen</button>
+                  <label class="file-button secondary">TXT/.eml hochladen
+                    <input id="emlUpload" type="file" accept=".eml,text/plain">
+                  </label>
+                </div>
+              </details>
+
+              <div class="button-row sticky-actions">
+                <button id="evaluateBtn" type="button">Änderung bewerten</button>
+                <button id="saveBtn" class="success" type="button" disabled>Änderung speichern</button>
+              </div>
+            </form>
+          </section>
+
+          <aside class="panel result-panel" aria-labelledby="result-title">
+            <div class="section-heading compact">
+              <div>
+                <p class="panel-kicker">Assessment</p>
+                <h2 id="result-title">Bewertungsergebnis</h2>
+              </div>
+              <span class="status-pill">pending_actions</span>
+            </div>
+            <div id="resultBox" class="empty-state">Noch keine Bewertung. Fülle das Formular aus und klicke auf „Änderung bewerten“.</div>
+            <div class="info-callout">
+              <strong>Hinweis zur Datensicherheit</strong>
+              <p>Die regelbasierte Bewertung ist eine Dokumentationshilfe und ersetzt keine rechtliche Prüfung.</p>
+            </div>
+          </aside>
         </div>
-      </form>
-    </section>
 
-    <section class="panel result-panel" aria-labelledby="result-title">
-      <h2 id="result-title">Bewertungsergebnis</h2>
-      <div id="resultBox" class="empty-state">Noch keine Bewertung. Fülle das Formular aus und klicke auf „Änderung bewerten“.</div>
-    </section>
-  </main>
+        <section class="panel history-panel" aria-labelledby="history-title">
+          <div class="section-heading wrap">
+            <div>
+              <p class="panel-kicker">Audit-Log</p>
+              <h2 id="history-title">Änderungshistorie</h2>
+              <p>Vollständiges lokales Protokoll aller gespeicherten Bewertungen. Exportiere die Daten bei Bedarf als Sicherung.</p>
+            </div>
+            <div class="button-row">
+              <button id="loadSamplesBtn" class="secondary" type="button">Beispieldaten laden</button>
+              <label class="file-button secondary">CSV importieren
+                <input id="csvUpload" type="file" accept=".csv,text/csv">
+              </label>
+              <button id="exportJsonBtn" class="secondary" type="button">JSON exportieren</button>
+              <button id="exportCsvBtn" class="secondary" type="button">CSV exportieren</button>
+              <button id="clearDataBtn" class="danger-button" type="button">lokale Daten löschen</button>
+            </div>
+          </div>
+          <div id="importErrors" class="alert danger hidden"></div>
+          <div class="table-toolbar" aria-hidden="true">
+            <span>⌕ Suche</span>
+            <span>Filter</span>
+            <span>Impact</span>
+            <span>Status</span>
+          </div>
+          <div class="table-wrap">
+            <table id="historyTable">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
 
-  <section class="panel history-panel" aria-labelledby="history-title">
-    <div class="section-heading wrap">
-      <div>
-        <h2 id="history-title">Lokale Änderungshistorie</h2>
-        <p>Gespeichert im Browser-localStorage. Exportiere die Daten bei Bedarf als Sicherung.</p>
-      </div>
-      <div class="button-row">
-        <button id="loadSamplesBtn" class="secondary" type="button">Beispieldaten laden</button>
-        <label class="file-button">CSV importieren
-          <input id="csvUpload" type="file" accept=".csv,text/csv">
-        </label>
-        <button id="exportJsonBtn" class="secondary" type="button">JSON exportieren</button>
-        <button id="exportCsvBtn" class="secondary" type="button">CSV exportieren</button>
-        <button id="clearDataBtn" class="danger-button" type="button">lokale Daten löschen</button>
-      </div>
+        <section id="settings" class="settings-strip" aria-label="Einstellungen und Tool-Informationen">
+          <div>
+            <strong>Lokale Datenspeicherung</strong>
+            <span>Aktiv · Browser-localStorage</span>
+          </div>
+          <div>
+            <strong>Export-Präferenzen</strong>
+            <span>JSON oder CSV, ohne Server</span>
+          </div>
+          <div>
+            <strong>Version</strong>
+            <span>Lokaler statischer Build</span>
+          </div>
+        </section>
+      </main>
     </div>
-    <div id="importErrors" class="alert danger hidden"></div>
-    <div class="table-wrap">
-      <table id="historyTable">
-        <thead></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </section>
-
-  <footer>
-    <p>Hinweis: Diese regelbasierte Bewertung ist eine Dokumentationshilfe und ersetzt keine rechtliche Prüfung.</p>
-  </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
