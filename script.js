@@ -192,8 +192,16 @@
     $("exportJsonBtn").addEventListener("click", exportJson);
     $("exportCsvBtn").addEventListener("click", exportCsv);
     $("clearDataBtn").addEventListener("click", clearLocalData);
+    bindOptionalClick("topExportJsonBtn", exportJson);
+    bindOptionalClick("topLoadSamplesBtn", () => loadSampleData(false));
+    bindOptionalClick("topClearDataBtn", clearLocalData);
     $("applyEmailTextBtn").addEventListener("click", applyEmailText);
     $("emlUpload").addEventListener("change", importEmlFile);
+  }
+
+  function bindOptionalClick(id, handler) {
+    const element = $(id);
+    if (element) element.addEventListener("click", handler);
   }
 
   function populateSelect(id, options, selectedValue) {
@@ -429,6 +437,7 @@
   }
 
   function renderHistory() {
+    renderDashboardStats();
     const thead = document.querySelector("#historyTable thead");
     const tbody = document.querySelector("#historyTable tbody");
     thead.innerHTML = `<tr>${TABLE_COLUMNS.map((column) => `<th>${escapeHtml(column)}</th>`).join("")}</tr>`;
@@ -441,6 +450,37 @@
         ${TABLE_COLUMNS.map((column) => `<td>${formatTableValue(column, entry[column])}</td>`).join("")}
       </tr>
     `).join("");
+  }
+
+  function renderDashboardStats() {
+    const totals = history.reduce((acc, entry) => {
+      const level = String(entry.impact_level || "").toLowerCase();
+      if (level === "high") acc.high += 1;
+      if (level === "medium") acc.medium += 1;
+      if (level === "low") acc.low += 1;
+      if (entry.manual_review_required) acc.openReviews += 1;
+      const timestamp = entry.saved_at || entry.date;
+      if (timestamp && (!acc.lastUpdate || String(timestamp) > String(acc.lastUpdate))) acc.lastUpdate = timestamp;
+      return acc;
+    }, { low: 0, medium: 0, high: 0, openReviews: 0, lastUpdate: "" });
+
+    setText("statTotalChanges", history.length);
+    setText("statOpenReviews", totals.openReviews);
+    setText("statHighImpact", totals.high);
+    setText("statLastUpdate", formatStatDate(totals.lastUpdate));
+    setText("statImpactSplit", `Low: ${totals.low} · Med: ${totals.medium} · High: ${totals.high}`);
+  }
+
+  function setText(id, value) {
+    const element = $(id);
+    if (element) element.textContent = String(value);
+  }
+
+  function formatStatDate(value) {
+    if (!value) return "Heute";
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleDateString("de-DE", { day: "2-digit", month: "short", year: "numeric" });
   }
 
   function formatTableValue(column, value) {
