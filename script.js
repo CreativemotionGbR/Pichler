@@ -874,11 +874,10 @@
     return date.toLocaleDateString("de-DE", { day: "2-digit", month: "short", year: "numeric" });
   }
 
-  function formatTableValue(column, value) {
-    if (column === "impact_level") {
-      const level = String(value || "").toLowerCase();
-      return `<span class="table-impact impact-${level}">${escapeHtml(value || "")}</span>`;
-    }
+  function formatTableValue(column, value, entry = {}, index = 0) {
+    if (column === "impact_level") return `<span class="table-impact impact-${escapeHtml(String(value || "Low").toLowerCase())}">${escapeHtml(value || "Low")}</span>`;
+    if (column === "manual_review_required") return escapeHtml(entry.status || (value ? "Offen" : "Umgesetzt"));
+    if (column === "change_id") return `<button class="secondary slim" type="button" data-load-history-index="${index}">Details</button>`;
     if (Array.isArray(value)) return escapeHtml(value.join("; "));
     if (typeof value === "boolean") return value ? "Ja" : "Nein";
     return escapeHtml(value ?? "");
