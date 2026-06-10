@@ -212,7 +212,8 @@
   }
 
   function bindEvents() {
-    bindViewNavigation();
+    $$(".nav-item[data-view]").forEach((button) => button.addEventListener("click", () => showView(button.dataset.view, true)));
+    bindViewShortcuts();
 
     $("evaluateBtn").addEventListener("click", evaluateCurrentForm);
     $("saveBtn").addEventListener("click", saveLastEvaluation);
@@ -222,12 +223,10 @@
     $("csvUpload").addEventListener("change", importCsvFile);
     $("exportJsonBtn").addEventListener("click", exportJson);
     $("exportCsvBtn").addEventListener("click", exportCsv);
-    $("topExportJsonBtn").addEventListener("click", exportJson);
-    $("topLoadSamplesBtn").addEventListener("click", loadAllSamples);
-    $("topClearDataBtn").addEventListener("click", clearLocalData);
-    $("settingsClearDataBtn").addEventListener("click", clearLocalData);
-    $("settingsExportJsonBtn").addEventListener("click", exportJson);
-    $("settingsExportDocsBtn").addEventListener("click", exportDocuments);
+    $("clearDataBtn").addEventListener("click", clearLocalData);
+    bindOptionalClick("topExportJsonBtn", exportJson);
+    bindOptionalClick("topLoadSamplesBtn", () => loadSampleData(false));
+    bindOptionalClick("topClearDataBtn", clearLocalData);
     $("applyEmailTextBtn").addEventListener("click", applyEmailText);
     $("emlUpload").addEventListener("change", importEmlFile);
 
@@ -252,64 +251,23 @@
     });
   }
 
-  function bindViewNavigation() {
-    const sideNav = document.querySelector(".side-nav");
-    if (sideNav) {
-      sideNav.addEventListener("click", (event) => {
-        const trigger = event.target.closest("[data-view]");
-        if (!trigger || !sideNav.contains(trigger)) return;
-        event.preventDefault();
-        showView(trigger.dataset.view, true);
-      });
-    }
-
-    document.addEventListener("click", (event) => {
-      const trigger = event.target.closest("[data-view-shortcut]");
-      if (!trigger) return;
-      event.preventDefault();
-      showView(trigger.dataset.viewShortcut, true);
-    });
-
-    window.addEventListener("hashchange", () => showView(getViewNameFromHash(), false));
-  }
-
   function bindViewShortcuts() {
-    // Kept for dynamic content compatibility; event delegation in bindViewNavigation handles clicks.
+    $$("[data-view-shortcut]").forEach((button) => {
+      button.onclick = () => showView(button.dataset.viewShortcut, true);
+    });
   }
 
   function openInitialView() {
-    showView(getViewNameFromHash() || "dashboard", false);
-  }
-
-  function getViewNameFromHash() {
-    return (window.location.hash || "").replace(/^#/, "").replace(/^view-/, "");
+    const requested = (window.location.hash || "").replace(/^#/, "");
+    showView(requested || "dashboard", false);
   }
 
   function showView(viewName, updateHash) {
-    const requestedView = String(viewName || "dashboard");
-    const safeView = $(`view-${requestedView}`) ? requestedView : "dashboard";
-    const activeViewId = `view-${safeView}`;
-
-    $$(".app-view").forEach((view) => {
-      const isActive = view.id === activeViewId;
-      view.classList.toggle("active", isActive);
-      view.toggleAttribute("hidden", !isActive);
-    });
-    $$(".nav-item[data-view]").forEach((item) => {
-      const isActive = item.dataset.view === safeView;
-      item.classList.toggle("active", isActive);
-      if (isActive) item.setAttribute("aria-current", "page");
-      else item.removeAttribute("aria-current");
-    });
-
+    const safeView = $(`view-${viewName}`) ? viewName : "dashboard";
+    $$(".app-view").forEach((view) => view.classList.toggle("active", view.id === `view-${safeView}`));
+    $$(".nav-item[data-view]").forEach((item) => item.classList.toggle("active", item.dataset.view === safeView));
     if (updateHash) historyReplaceHash(safeView);
-    resetViewScroll();
-  }
-
-  function resetViewScroll() {
-    const canvas = document.querySelector(".main-canvas");
-    if (canvas) canvas.scrollTop = 0;
-    window.scrollTo(0, 0);
+    document.querySelector(".main-canvas")?.scrollTo({ top: 0, behavior: "instant" });
   }
 
   function historyReplaceHash(viewName) {
@@ -324,6 +282,11 @@
     renderProposals();
     renderVersions();
     renderHistory();
+  }
+
+  function bindOptionalClick(id, handler) {
+    const element = $(id);
+    if (element) element.addEventListener("click", handler);
   }
 
   function populateSelect(id, options, selectedValue) {
@@ -878,6 +841,37 @@
     tbody.innerHTML = [...history].reverse().map((entry, index) => `<tr>${TABLE_COLUMNS.map((column) => `<td>${formatTableValue(column, entry[column], entry, index)}</td>`).join("")}</tr>`).join("");
     $$('[data-load-history-index]').forEach((button) => button.addEventListener("click", () => loadHistoryEntry(Number(button.dataset.loadHistoryIndex))));
     bindViewShortcuts();
+  }
+
+  function renderDashboardStats() {
+    const totals = history.reduce((acc, entry) => {
+      const level = String(entry.impact_level || "").toLowerCase();
+      if (level === "high") acc.high += 1;
+      if (level === "medium") acc.medium += 1;
+      if (level === "low") acc.low += 1;
+      if (entry.manual_review_required) acc.openReviews += 1;
+      const timestamp = entry.saved_at || entry.date;
+      if (timestamp && (!acc.lastUpdate || String(timestamp) > String(acc.lastUpdate))) acc.lastUpdate = timestamp;
+      return acc;
+    }, { low: 0, medium: 0, high: 0, openReviews: 0, lastUpdate: "" });
+
+    setText("statTotalChanges", history.length);
+    setText("statOpenReviews", totals.openReviews);
+    setText("statHighImpact", totals.high);
+    setText("statLastUpdate", formatStatDate(totals.lastUpdate));
+    setText("statImpactSplit", `Low: ${totals.low} · Med: ${totals.medium} · High: ${totals.high}`);
+  }
+
+  function setText(id, value) {
+    const element = $(id);
+    if (element) element.textContent = String(value);
+  }
+
+  function formatStatDate(value) {
+    if (!value) return "Heute";
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleDateString("de-DE", { day: "2-digit", month: "short", year: "numeric" });
   }
 
   function formatTableValue(column, value, entry = {}, index = 0) {
